@@ -1,3 +1,17 @@
+
+
+
+
+### 1) Use sciter-js-sdk-4.6.6.7
+
+```
+https://github.com/pkaftj/sciter-js-sdk/tree/4b10c90a4efd3ac19a07a78e56469e920c078761
+```
+
+### 2) use ```go build```, instead of ```go run```
+
+
+
 # Go bindings for Sciter
 
 [![Build status](https://ci.appveyor.com/api/projects/status/rphv883klffw9em9/branch/master?svg=true)](https://ci.appveyor.com/project/pravic/go-sciter)
@@ -8,7 +22,6 @@
 Check [this page](http://sciter.com/developers/sciter-sdk-bindings/) for other language bindings (Delphi / D / Go / .NET / Python / Rust).
 
 ----
-
 
 # Attention
 
@@ -24,52 +37,53 @@ downloaded from [sciter-sdk][], the library itself is rather small
 
 Most [Sciter][] API are supported, including:
 
- * Html string/file loading
- * DOM manipulation/callback/event handling
- * DOM state/attribute handling
- * Custom resource loading
- * Sciter Behavior
- * Sciter Options
- * Sciter Value support
- * NativeFunctor (used in sciter scripting)
+* Html string/file loading
+* DOM manipulation/callback/event handling
+* DOM state/attribute handling
+* Custom resource loading
+* Sciter Behavior
+* Sciter Options
+* Sciter Value support
+* NativeFunctor (used in sciter scripting)
 
 And the API are organized in more or less a gopher friendly way.
 
 Things that are not supported:
 
- * Sciter Node API
- * TIScript Engine API
+* Sciter Node API
+* TIScript Engine API
 
 # Getting Started
 
-###  At the moment only **Go 1.10** or higher is supported (issue #136).
+### At the moment only **Go 1.10** or higher is supported (issue #136).
 
- 1. Download the [sciter-sdk][]
- 2. Extract the sciter runtime library from [sciter-sdk][] to system PATH
+1. Download the [sciter-sdk][]
 
-    The runtime libraries lives in `bin` `bin.lnx` `bin.osx` with suffix like `dll` `so` or `dylib`
+2. Extract the sciter runtime library from [sciter-sdk][] to system PATH
+   
+   The runtime libraries lives in `bin` `bin.lnx` `bin.osx` with suffix like `dll` `so` or `dylib`
+   
+   * Windows: simply copying `bin\64\sciter.dll` to `c:\windows\system32` is just enough
+   * Linux:
+     - `cd sciter-sdk/bin.lnx/x64`
+     - `export LIBRARY_PATH=$PWD`
+     - `echo $PWD >> libsciter.conf`
+     - `sudo cp libsciter.conf /etc/ld.so.conf.d/`
+     - `sudo ldconfig`
+     - `ldconfig -p | grep sciter` should print libsciter-gtk.so location
+   * OSX:
+     - `cd sciter-sdk/bin.osx/`
+     - `export DYLD_LIBRARY_PATH=$PWD`
 
-    * Windows: simply copying `bin\64\sciter.dll` to `c:\windows\system32` is just enough
-    * Linux:
-      - `cd sciter-sdk/bin.lnx/x64`
-      - `export LIBRARY_PATH=$PWD`
-      - `echo $PWD >> libsciter.conf`
-      - `sudo cp libsciter.conf /etc/ld.so.conf.d/`
-      - `sudo ldconfig`
-      - `ldconfig -p | grep sciter` should print libsciter-gtk.so location
-    * OSX:
-      - `cd sciter-sdk/bin.osx/`
-      - `export DYLD_LIBRARY_PATH=$PWD`
+3. Set up GCC envrionmnet for CGO
+   
+   [mingw64-gcc][] (5.2.0 and 7.2.0 are tested) is recommended for Windows users.
+   
+   Under Linux gcc(4.8 or above) and gtk+-3.0 are needed.
 
- 3. Set up GCC envrionmnet for CGO
+4. `go get -x github.com/pkaftj/sciter-go`
 
-    [mingw64-gcc][] (5.2.0 and 7.2.0 are tested) is recommended for Windows users.
-
-    Under Linux gcc(4.8 or above) and gtk+-3.0 are needed.
-
- 4. `go get -x github.com/pkaftj/sciter-go`
-
- 5. Run the example and enjoy :)
+5. Run the example and enjoy :)
 
 # Sciter Desktop UI Examples
 
@@ -91,8 +105,8 @@ Things that are not supported:
 
 ![](http://sciter.com/screenshots/slide-sciter-gtk.png)
 
-
 # Sciter Version Support
+
 Currently supports [Sciter][] version `4.0.0.0` and higher.
 
 [Sciter]: http://sciter.com/
@@ -112,6 +126,7 @@ dynamic libraries are totally free to use for commercial or
 non-commercial applications.
 
 # The Tailored Sciter C Headers
+
 This binding ueses a tailored version of the sciter C Headers, which lives in directory: `include`. The included c headers are a modified version of the
 [sciter-sdk][] standard headers.
 
