@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/iwctwbai/sciter-go"
-	"github.com/iwctwbai/sciter-go/window"
+	"github.com/pkaftj/sciter-go"
+	"github.com/pkaftj/sciter-go/window"
 )
 
 //一些基础操作

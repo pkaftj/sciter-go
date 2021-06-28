@@ -5,8 +5,8 @@ import (
 	"log"
 	"path/filepath"
 
-	"github.com/iwctwbai/sciter-go"
-	"github.com/iwctwbai/sciter-go/window"
+	"github.com/pkaftj/sciter-go"
+	"github.com/pkaftj/sciter-go/window"
 )
 
 var (
